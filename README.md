@@ -51,7 +51,6 @@ Progressbar animations for farming and crafting.
 <img width="1440" height="778" alt="image" src="https://github.com/user-attachments/assets/710af04f-d9b4-4582-8fc7-9a6ce4a61d2d" />
 <img width="296" height="62" alt="image" src="https://github.com/user-attachments/assets/bbe0c404-5542-432f-bdb8-256563684c0a" />
 <img width="246" height="92" alt="image" src="https://github.com/user-attachments/assets/c38b5b12-7cad-45ee-8382-7bdb27c721db" />
-<img width="277" height="74" alt="image" src="https://github.com/user-attachments/assets/8c54759d-b040-46ad-a6b0-2d8f8d795a4b" />
 <img width="277" height="74" alt="image" src="https://github.com/user-attachments/assets/34e78586-6b15-48cd-8759-2e4d68e19a43" />
 
 
