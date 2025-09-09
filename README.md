@@ -39,3 +39,17 @@ Player Commands
 Compatible with qb-inventory, qb-target, and qb-core notifications.
 
 Progressbar animations for farming and crafting.
+
+<img width="176" height="99" alt="image" src="https://github.com/user-attachments/assets/de8bd769-11ad-4ce5-bc4a-6f5b20c38291" />
+<img width="920" height="386" alt="image" src="https://github.com/user-attachments/assets/13a80e91-a858-4a4e-b8f5-0a903dd8e932" />
+<img width="821" height="429" alt="image" src="https://github.com/user-attachments/assets/9fdf3b4e-e924-4935-bb37-bd12e0a93da6" />
+<img width="364" height="117" alt="image" src="https://github.com/user-attachments/assets/c15bf4e3-8c69-4ba3-8409-1e2868baf15f" />
+<img width="1235" height="574" alt="image" src="https://github.com/user-attachments/assets/437264d4-3664-4246-8f6f-6a8fdeb5acf4" />
+<img width="689" height="440" alt="image" src="https://github.com/user-attachments/assets/facc66bb-ccd8-425a-a81a-b385aa7d50a5" />
+<img width="394" height="117" alt="image" src="https://github.com/user-attachments/assets/a98db384-e5d4-45cd-9859-67008000d1b7" />
+<img width="1239" height="713" alt="image" src="https://github.com/user-attachments/assets/3563ce0f-1e31-4523-9c73-21ccbc91574b" />
+<img width="1440" height="778" alt="image" src="https://github.com/user-attachments/assets/710af04f-d9b4-4582-8fc7-9a6ce4a61d2d" />
+<img width="296" height="62" alt="image" src="https://github.com/user-attachments/assets/bbe0c404-5542-432f-bdb8-256563684c0a" />
+<img width="246" height="92" alt="image" src="https://github.com/user-attachments/assets/c38b5b12-7cad-45ee-8382-7bdb27c721db" />
+
+
