@@ -1,9 +1,9 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
--- عداد مرات الصنع لكل لاعب (cache)
+--  (cache)
 local playerMixCounts = {}
 
--- helper: نحدد level
+-- helper:  level
 local function getLevelFromCount(count)
     if count >= 6000 then
         return 3
@@ -14,7 +14,7 @@ local function getLevelFromCount(count)
     end
 end
 
--- ✅ ملي resource كيتعاود start (restart script)
+-- ✅ ملي resource start (restart script)
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName == GetCurrentResourceName() then
         for _, playerId in pairs(QBCore.Functions.GetPlayers()) do
@@ -28,14 +28,14 @@ AddEventHandler('onResourceStart', function(resourceName)
     end
 end)
 
--- لما اللاعب يدخل السيرفر، نجيب العدد من الميتاداتا
+
 AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
     local src = Player.PlayerData.source
     local saved = Player.PlayerData.metadata and Player.PlayerData.metadata.pillMixCount or 0
     playerMixCounts[src] = saved
 end)
 
--- لما يخرج نمسحو الكاش
+
 AddEventHandler('QBCore:Server:OnPlayerUnload', function(src)
     playerMixCounts[src] = nil
 end)
@@ -81,12 +81,12 @@ RegisterNetEvent('craft:healingpill', function()
         Player.Functions.RemoveItem('broken_pills', 1)
         Player.Functions.RemoveItem('fenta_syrup', 1)
 
-        -- تحديث العداد
+        
         local current = (playerMixCounts[src] or Player.PlayerData.metadata.pillMixCount or 0) + 1
         playerMixCounts[src] = current
         Player.Functions.SetMetaData('pillMixCount', current)
 
-        -- نحدد level
+        
         local level = getLevelFromCount(current)
         local pillItem = "healing_pill_lv1"
         if level == 2 then
@@ -95,12 +95,12 @@ RegisterNetEvent('craft:healingpill', function()
             pillItem = "healing_pill_lv3"
         end
 
-        -- نعطي الحبة المناسبة
+        
         Player.Functions.AddItem(pillItem, 1)
         TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[pillItem], 'add')
         TriggerClientEvent('QBCore:Notify', src, "You crafted a " .. QBCore.Shared.Items[pillItem].label .. "!", "success")
 
-        -- إعلام اللاعب ملي يوصل thresholds
+        
         if current == 3000 then
             TriggerClientEvent('QBCore:Notify', src, "🎉 You unlocked Pill Level 2!", "success")
         elseif current == 6000 then
@@ -140,7 +140,7 @@ QBCore.Commands.Add("pillinfo", "Check your pill crafting progress", {}, false, 
         nextGoal = 6000 - current
     end
 
-    -- رسالة للاعب
+    
     local msg = ("📊 Pill Crafting Progress:\nLevel: %d\nCrafted: %d pills"):format(level, current)
     if nextGoal then
         msg = msg .. ("\nRemaining to next level: %d pills"):format(nextGoal)
@@ -150,3 +150,4 @@ QBCore.Commands.Add("pillinfo", "Check your pill crafting progress", {}, false, 
 
     TriggerClientEvent('QBCore:Notify', src, msg, "primary", 10000)
 end)
+
