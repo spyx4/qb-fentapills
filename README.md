@@ -7,13 +7,14 @@
 
 3. Make sure you have the items in **`qb-core/shared/items.lua`**:
 
-```
-	fenta_syrup                  = { name = 'fenta_syrup', label = 'Fenta Syrup', weight = 100, type = 'item', image = 'fenta_syrup.png', unique = false, useable = false, shouldClose = true, description = 'A syrup base laced with fentanyl, very potent.' },
+
+```	fenta_syrup                  = { name = 'fenta_syrup', label = 'Fenta Syrup', weight = 100, type = 'item', image = 'fenta_syrup.png', unique = false, useable = false, shouldClose = true, description = 'A syrup base laced with fentanyl, very potent.' },
     broken_pills                  = { name = 'broken_pills', label = 'Broken Pills', weight = 100, type = 'item', image = 'broken_pills.png', unique = false, useable = false, shouldClose = true, description = 'Crushed or broken pills, used to make street mixes.' },
     healing_pill_lv1                  = { name = 'healing_pill_lv1', label = 'Healing Pill (Level 1)', weight = 100, type = 'item', image = 'healing_pill_lv1.png', unique = false, useable = true, shouldClose = true, description = 'Restores a little health and armor' },
 	healing_pill_lv2                  = { name = 'healing_pill_lv2', label = 'Healing Pill (Level 2)', weight = 100, type = 'item', image = 'healing_pill_lv2.png', unique = false, useable = true, shouldClose = true, description = 'Restores a little health and armor' },
     healing_pill_lv3                  = { name = 'healing_pill_lv3', label = 'Healing Pill (Level 3)', weight = 100, type = 'item', image = 'healing_pill_lv3.png', unique = false, useable = true, shouldClose = true, description = 'Restores a little health and armor' },
-	```
+```
+
 4. Add the corresponding images (PNG) to
 	```qb-inventory/html/images```
 
