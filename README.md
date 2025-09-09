@@ -1,3 +1,5 @@
+```the mlo ```: https://github.com/AceMaps/MethLab.git
+
 Pill Crafting System (QBCore)
 
 A QBCore-based FiveM resource that introduces an interactive pill crafting system with farming, mixing, and progression mechanics. Players can gather components, craft healing pills, and unlock stronger versions as they progress.
