@@ -210,7 +210,7 @@ end)
 RegisterNetEvent("use:healing_pill", function(level)
     local ped = PlayerPedId()
 
-    -- ✅ Animation بحال واحد كياخذ painkillers
+    -- ✅ Animation
     RequestAnimDict("mp_suicide")
     while not HasAnimDictLoaded("mp_suicide") do Wait(0) end
     TaskPlayAnim(ped, "mp_suicide", "pill", 3.0, -1, -1, 49, 0, false, false, false)
@@ -245,4 +245,5 @@ RegisterNetEvent("use:healing_pill", function(level)
         QBCore.Functions.Notify("Canceled!", "error")
     end)
 end)
+
 
