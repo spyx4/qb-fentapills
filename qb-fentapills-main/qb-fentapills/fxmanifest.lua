@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'QBCore Drug System (Farming + Crafting + Healing Pill)'
-author 'YourName'
+author 'spy5919'
 
 
 
@@ -18,3 +18,4 @@ server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'server.lua'
 }
+
