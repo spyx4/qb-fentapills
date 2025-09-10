@@ -14,7 +14,7 @@ local function getLevelFromCount(count)
     end
 end
 
--- ✅ resource start (restart script)
+
 AddEventHandler('onResourceStart', function(resourceName)
     if resourceName == GetCurrentResourceName() then
         for _, playerId in pairs(QBCore.Functions.GetPlayers()) do
@@ -150,5 +150,6 @@ QBCore.Commands.Add("pillinfo", "Check your pill crafting progress", {}, false, 
 
     TriggerClientEvent('QBCore:Notify', src, msg, "primary", 10000)
 end)
+
 
 
