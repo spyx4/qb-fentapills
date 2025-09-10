@@ -129,7 +129,7 @@ RegisterNetEvent('farm:componentA', function(data)
             distance = 2.5
         })
 
-        -- ✅ Fixed: matches server.lua
+   
         TriggerServerEvent('give:broken_pills')
     end, function()
         ClearPedTasks(ped)
@@ -175,7 +175,7 @@ RegisterNetEvent('farm:componentB', function(data)
             distance = 2.5
         })
 
-        -- ✅ Fixed: matches server.lua
+   
         TriggerServerEvent('give:fenta_syrup')
     end, function()
         ClearPedTasks(ped)
@@ -245,5 +245,6 @@ RegisterNetEvent("use:healing_pill", function(level)
         QBCore.Functions.Notify("Canceled!", "error")
     end)
 end)
+
 
 
