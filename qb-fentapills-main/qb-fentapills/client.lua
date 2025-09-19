@@ -1,30 +1,19 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
--- Farming positions
-local farmComponentAPos = vector3(-1601.85, 3093.27, 32.57) -- Broken Pills farm
-local farmComponentBPos = vector3(-2422.45, 4257.89, 7.78) -- Fenta Syrup farm
-local labPos            = vector3(1417.95, 6330.21, 25.58) -- Lab (mixing)
 
--- Table to track active props
 local activeProps = {
     componentA = {},
     componentB = {}
 }
 
--- Props per zone
-local farmProps = {
-    componentA = {`prop_barrel_exp_01a`, `prop_rad_waste_barrel_01`, `prop_barrel_02a`},
-    componentB = {`prop_box_wood05a`, `prop_boxpile_07d`, `prop_box_wood02a`}
-}
 
--- Helper: Freeze player
 local function FreezePlayer(ped, state)
     FreezeEntityPosition(ped, state)
     SetEntityInvincible(ped, state)
     DisablePlayerFiring(ped, state)
 end
 
--- Function to play farming animation
+
 local function PlayFarmAnim()
     local ped = PlayerPedId()
     RequestAnimDict("amb@prop_human_bum_bin@idle_a")
@@ -32,7 +21,7 @@ local function PlayFarmAnim()
     TaskPlayAnim(ped, "amb@prop_human_bum_bin@idle_a", "idle_a", 3.0, -1, -1, 49, 0, false, false, false)
 end
 
--- Function to spawn a prop
+
 local function SpawnProp(model, coords, heading)
     RequestModel(model)
     while not HasModelLoaded(model) do Wait(0) end
@@ -43,12 +32,12 @@ local function SpawnProp(model, coords, heading)
     return obj
 end
 
--- Spawn 3 props for a farming zone
+
 local function SpawnFarmProps(zone, baseCoords, eventName)
     for i = 1, 3 do
         local offset = vector3(math.random(-3,3), math.random(-3,3), 0.0)
         local coords = baseCoords + offset
-        local model = farmProps[zone][math.random(#farmProps[zone])]
+        local model = Config.FarmProps[zone][math.random(#Config.FarmProps[zone])]
         local prop = SpawnProp(model, coords)
         table.insert(activeProps[zone], prop)
 
@@ -67,17 +56,17 @@ local function SpawnFarmProps(zone, baseCoords, eventName)
     end
 end
 
--- ========== CREATE TARGETS ==========
-CreateThread(function()
-    SpawnFarmProps("componentA", farmComponentAPos, "farm:componentA")
-    SpawnFarmProps("componentB", farmComponentBPos, "farm:componentB")
 
-    exports['qb-target']:AddBoxZone("lab_zone", labPos, 3.0, 3.0, {
+CreateThread(function()
+    SpawnFarmProps("componentA", Config.FarmComponentAPos, "farm:componentA")
+    SpawnFarmProps("componentB", Config.FarmComponentBPos, "farm:componentB")
+
+    exports['qb-target']:AddBoxZone("lab_zone", Config.LabPos, 3.0, 3.0, {
         name = "lab_zone",
         heading = 0,
         debugPoly = false,
-        minZ = labPos.z - 1.5,
-        maxZ = labPos.z + 1.5,
+        minZ = Config.LabPos.z - 1.5,
+        maxZ = Config.LabPos.z + 1.5,
     }, {
         options = {
             {
@@ -91,7 +80,7 @@ CreateThread(function()
     })
 end)
 
--- ========== FARMING ==========
+
 RegisterNetEvent('farm:componentA', function(data)
     local ped = PlayerPedId()
     local usedProp = data.entity
@@ -112,8 +101,8 @@ RegisterNetEvent('farm:componentA', function(data)
         end
 
         local offset = vector3(math.random(-3,3), math.random(-3,3), 0.0)
-        local newModel = farmProps.componentA[math.random(#farmProps.componentA)]
-        local newProp = SpawnProp(newModel, farmComponentAPos + offset)
+        local newModel = Config.FarmProps.componentA[math.random(#Config.FarmProps.componentA)]
+        local newProp = SpawnProp(newModel, Config.FarmComponentAPos + offset)
         table.insert(activeProps.componentA, newProp)
 
         exports['qb-target']:AddTargetEntity(newProp, {
@@ -129,7 +118,6 @@ RegisterNetEvent('farm:componentA', function(data)
             distance = 2.5
         })
 
-   
         TriggerServerEvent('give:broken_pills')
     end, function()
         ClearPedTasks(ped)
@@ -158,8 +146,8 @@ RegisterNetEvent('farm:componentB', function(data)
         end
 
         local offset = vector3(math.random(-3,3), math.random(-3,3), 0.0)
-        local newModel = farmProps.componentB[math.random(#farmProps.componentB)]
-        local newProp = SpawnProp(newModel, farmComponentBPos + offset)
+        local newModel = Config.FarmProps.componentB[math.random(#Config.FarmProps.componentB)]
+        local newProp = SpawnProp(newModel, Config.FarmComponentBPos + offset)
         table.insert(activeProps.componentB, newProp)
 
         exports['qb-target']:AddTargetEntity(newProp, {
@@ -175,7 +163,6 @@ RegisterNetEvent('farm:componentB', function(data)
             distance = 2.5
         })
 
-   
         TriggerServerEvent('give:fenta_syrup')
     end, function()
         ClearPedTasks(ped)
@@ -184,7 +171,7 @@ RegisterNetEvent('farm:componentB', function(data)
     end)
 end)
 
--- ========== CRAFTING ==========
+
 RegisterNetEvent('start:craftingpill', function()
     QBCore.Functions.TriggerCallback('check:ingredients', function(hasItems)
         if hasItems then
@@ -206,11 +193,10 @@ RegisterNetEvent('start:craftingpill', function()
     end)
 end)
 
--- ========== PILL EFFECTS ==========
+
 RegisterNetEvent("use:healing_pill", function(level)
     local ped = PlayerPedId()
 
-    -- ✅ Animation
     RequestAnimDict("mp_suicide")
     while not HasAnimDictLoaded("mp_suicide") do Wait(0) end
     TaskPlayAnim(ped, "mp_suicide", "pill", 3.0, -1, -1, 49, 0, false, false, false)
@@ -234,8 +220,6 @@ RegisterNetEvent("use:healing_pill", function(level)
             SetEntityHealth(ped, math.min(200, health + 70))
             AddArmourToPed(ped, GetPedArmour(ped) + 30)
             QBCore.Functions.Notify("This pill is super effective! (Level 3 Pill)", "success")
-
-            -- Stop bleeding effect
             TriggerEvent("hospital:client:StopBleeding")
         end
 
@@ -245,6 +229,3 @@ RegisterNetEvent("use:healing_pill", function(level)
         QBCore.Functions.Notify("Canceled!", "error")
     end)
 end)
-
-
-
