@@ -4,7 +4,9 @@ game 'gta5'
 description 'QBCore Drug System (Farming + Crafting + Healing Pill)'
 author 'spy5919'
 
-
+shared_scripts {
+    'config.lua'
+}
 
 client_scripts {
     '@PolyZone/client.lua',
@@ -18,4 +20,3 @@ server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'server.lua'
 }
-
